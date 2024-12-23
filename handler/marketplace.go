@@ -8,6 +8,14 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// Fund godoc
+// @Summary Fund a loan
+// @Description Fund a loan after loan approval
+// @Tags Marketplace
+// @Accept json
+// @Produce json
+// @Param fundRequest body dto.FundRequest true "Fund Loan Request"
+// @Router /amartha/fund [post]
 func (h AmarthaHttpServer) Fund(c *gin.Context) {
 	in := dto.FundRequest{}
 

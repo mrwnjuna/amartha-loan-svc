@@ -12,6 +12,14 @@ import (
 
 var validate = validator.New()
 
+// CreateLoan godoc
+// @Summary Create a new loan
+// @Description Create a loan
+// @Tags Loans
+// @Accept json
+// @Produce json
+// @Param input body dto.CreateLoan true "Loan"
+// @Router /amartha/create-loan [post]
 func (h AmarthaHttpServer) CreateLoan(c *gin.Context) {
 	in := dto.CreateLoan{}
 
@@ -38,6 +46,15 @@ func (h AmarthaHttpServer) CreateLoan(c *gin.Context) {
 	})
 }
 
+// ApproveLoan godoc
+// @Summary Approve a loan
+// @Description Approve a loan using loan_id
+// @Tags Loans
+// @Accept json
+// @Produce json
+// @Param loan_id path int true "Loan ID"
+// @Param input body dto.ApproveLoan true "Approval details"
+// @Router /amartha/approve/{loan_id} [post]
 func (h AmarthaHttpServer) ApproveLoan(c *gin.Context) {
 	in := dto.ApproveLoan{}
 
@@ -79,6 +96,14 @@ func (h AmarthaHttpServer) ApproveLoan(c *gin.Context) {
 	})
 }
 
+// DisburseLoan godoc
+// @Summary Disburse a loan
+// @Description Disburse a loan based on the provided loan ID.
+// @Tags Loans
+// @Accept  json
+// @Produce  json
+// @Param disburseLoan body dto.DisburseLoan true "Disburse Loan Request"
+// @Router /amartha/disburse [post]
 func (h AmarthaHttpServer) DisburseLoan(c *gin.Context) {
 	in := dto.DisburseLoan{}
 

@@ -12,7 +12,7 @@ type (
 	}
 
 	ApproveLoan struct {
-		LoanID           int64  `json:"loan_id" validate:"-"`
+		LoanID           int64  `json:"-" validate:"-"`
 		VisitDocProof    string `json:"visit_doc_proof" validate:"required"`
 		FieldValidatorID string `json:"field_validator_id" validate:"required"`
 	}

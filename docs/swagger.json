@@ -1,0 +1,205 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "contact": {}
+    },
+    "paths": {
+        "/amartha/approve/{loan_id}": {
+            "post": {
+                "description": "Approve a loan using loan_id",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Loans"
+                ],
+                "summary": "Approve a loan",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Loan ID",
+                        "name": "loan_id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Approval details",
+                        "name": "input",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.ApproveLoan"
+                        }
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/amartha/create-loan": {
+            "post": {
+                "description": "Create a loan",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Loans"
+                ],
+                "summary": "Create a new loan",
+                "parameters": [
+                    {
+                        "description": "Loan",
+                        "name": "input",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.CreateLoan"
+                        }
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/amartha/disburse": {
+            "post": {
+                "description": "Disburse a loan based on the provided loan ID.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Loans"
+                ],
+                "summary": "Disburse a loan",
+                "parameters": [
+                    {
+                        "description": "Disburse Loan Request",
+                        "name": "disburseLoan",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.DisburseLoan"
+                        }
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/amartha/fund": {
+            "post": {
+                "description": "Fund a loan after loan approval",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Marketplace"
+                ],
+                "summary": "Fund a loan",
+                "parameters": [
+                    {
+                        "description": "Fund Loan Request",
+                        "name": "fundRequest",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.FundRequest"
+                        }
+                    }
+                ],
+                "responses": {}
+            }
+        }
+    },
+    "definitions": {
+        "dto.ApproveLoan": {
+            "type": "object",
+            "required": [
+                "field_validator_id",
+                "visit_doc_proof"
+            ],
+            "properties": {
+                "field_validator_id": {
+                    "type": "string"
+                },
+                "visit_doc_proof": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.CreateLoan": {
+            "type": "object",
+            "required": [
+                "agreement_letter",
+                "borrower_id",
+                "principal_amount",
+                "rate",
+                "roi"
+            ],
+            "properties": {
+                "agreement_letter": {
+                    "type": "string"
+                },
+                "borrower_id": {
+                    "type": "integer"
+                },
+                "principal_amount": {
+                    "type": "number"
+                },
+                "rate": {
+                    "type": "number"
+                },
+                "roi": {
+                    "type": "number"
+                }
+            }
+        },
+        "dto.DisburseLoan": {
+            "type": "object",
+            "required": [
+                "collector_id",
+                "loan_id",
+                "signed_agreement_letter"
+            ],
+            "properties": {
+                "collector_id": {
+                    "type": "string"
+                },
+                "loan_id": {
+                    "type": "integer"
+                },
+                "signed_agreement_letter": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.FundRequest": {
+            "type": "object",
+            "required": [
+                "funding_amount",
+                "lender_id",
+                "loan_id"
+            ],
+            "properties": {
+                "funding_amount": {
+                    "type": "number"
+                },
+                "lender_id": {
+                    "type": "integer"
+                },
+                "loan_id": {
+                    "type": "integer"
+                }
+            }
+        }
+    }
+}

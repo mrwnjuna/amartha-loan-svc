@@ -1,0 +1,137 @@
+definitions:
+  dto.ApproveLoan:
+    properties:
+      field_validator_id:
+        type: string
+      visit_doc_proof:
+        type: string
+    required:
+    - field_validator_id
+    - visit_doc_proof
+    type: object
+  dto.CreateLoan:
+    properties:
+      agreement_letter:
+        type: string
+      borrower_id:
+        type: integer
+      principal_amount:
+        type: number
+      rate:
+        type: number
+      roi:
+        type: number
+    required:
+    - agreement_letter
+    - borrower_id
+    - principal_amount
+    - rate
+    - roi
+    type: object
+  dto.DisburseLoan:
+    properties:
+      collector_id:
+        type: string
+      loan_id:
+        type: integer
+      signed_agreement_letter:
+        type: string
+    required:
+    - collector_id
+    - loan_id
+    - signed_agreement_letter
+    type: object
+  dto.FundRequest:
+    properties:
+      funding_amount:
+        type: number
+      lender_id:
+        type: integer
+      loan_id:
+        type: integer
+    required:
+    - funding_amount
+    - lender_id
+    - loan_id
+    type: object
+info:
+  contact: {}
+paths:
+  /amartha/approve/{loan_id}:
+    post:
+      consumes:
+      - application/json
+      description: Approve a loan using loan_id
+      parameters:
+      - description: Loan ID
+        in: path
+        name: loan_id
+        required: true
+        type: integer
+      - description: Approval details
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/dto.ApproveLoan'
+      produces:
+      - application/json
+      responses: {}
+      summary: Approve a loan
+      tags:
+      - Loans
+  /amartha/create-loan:
+    post:
+      consumes:
+      - application/json
+      description: Create a loan
+      parameters:
+      - description: Loan
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/dto.CreateLoan'
+      produces:
+      - application/json
+      responses: {}
+      summary: Create a new loan
+      tags:
+      - Loans
+  /amartha/disburse:
+    post:
+      consumes:
+      - application/json
+      description: Disburse a loan based on the provided loan ID.
+      parameters:
+      - description: Disburse Loan Request
+        in: body
+        name: disburseLoan
+        required: true
+        schema:
+          $ref: '#/definitions/dto.DisburseLoan'
+      produces:
+      - application/json
+      responses: {}
+      summary: Disburse a loan
+      tags:
+      - Loans
+  /amartha/fund:
+    post:
+      consumes:
+      - application/json
+      description: Fund a loan after loan approval
+      parameters:
+      - description: Fund Loan Request
+        in: body
+        name: fundRequest
+        required: true
+        schema:
+          $ref: '#/definitions/dto.FundRequest'
+      produces:
+      - application/json
+      responses: {}
+      summary: Fund a loan
+      tags:
+      - Marketplace
+swagger: "2.0"
