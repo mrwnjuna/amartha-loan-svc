@@ -1,6 +1,11 @@
 # Amartha Loan Service API
-
 This repository contains the documentation for the Amartha Loan Service API, which allows you to create, approve, fund, and disburse loans.
+
+## Flow
+![image](https://github.com/user-attachments/assets/e4c95858-56f2-4fb1-a498-f6a490ec2f2e)
+
+## DB Design
+![loan_service_amartha_db_design](https://github.com/user-attachments/assets/21c281eb-3d6e-4338-af5e-1408e7adcd32)
 
 ## Base URL
 
