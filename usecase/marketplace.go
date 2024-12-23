@@ -58,15 +58,17 @@ func (u *AmarthaUsecase) Fund(in dto.FundRequest) *utils.AppError {
 			return utils.NewInternalServerError("failed to set fully funded loan", err.Error())
 		}
 
-		err = u.amarthaRepo.SendEmail(dto.SendEmailRequest{
-			ToEmailAddress:     user.Email,
-			LoanID:             loan.ID,
-			ROI:                loan.ROI,
-			AgreementLetterURL: loan.AgreementLetter,
-		})
-		if err != nil {
-			return utils.NewInternalServerError("failed to send email", err.Error())
-		}
+		go func() {
+			err = u.amarthaRepo.SendEmail(dto.SendEmailRequest{
+				ToEmailAddress:     user.Email,
+				LoanID:             loan.ID,
+				ROI:                loan.ROI,
+				AgreementLetterURL: loan.AgreementLetter,
+			})
+			if err != nil {
+				fmt.Printf("failed to send email: %s", err.Error())
+			}
+		}()
 	}
 
 	return nil
