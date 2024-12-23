@@ -1,0 +1,1 @@
+web: ./amartha-loan-svc
