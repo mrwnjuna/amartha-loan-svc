@@ -18,6 +18,6 @@ func StartApplication() {
 	app := usecase.NewAmarthaUsecase(amarthaRepo)
 	infra.RegisterApi(router, app)
 
-	port := os.Getenv("APP_PORT")
+	port := os.Getenv("PORT")
 	router.Run(fmt.Sprintf(":%s", port))
 }
