@@ -96,6 +96,9 @@ curl --location 'https://amartha-loan-svc-8bc82f694dbf.herokuapp.com/amartha/fun
 }
 ```
 
+#### Example email service
+<img width="624" alt="Screenshot 2024-12-23 at 19 33 30" src="https://github.com/user-attachments/assets/72557a38-7ed7-409f-81bc-5be3050d6c9c" />
+
 ---
 
 ### 4. Disburse Loan
